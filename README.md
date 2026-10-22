@@ -35,8 +35,8 @@ F・R・Lの指示を使って、プレイヤーをゴールまで移動させ�
 | `L` | 左に90度回る |
 
 例えば、次のプログラムを実行します。
-
 FFFRFRFL
+
 指示は左から右へ順番に実行されます。
 F → F → F → R → F → R → F → R → F → L
 
@@ -69,6 +69,7 @@ Webブラウザ(Google Chrome推奨)
 
 ## ファイル構成
 
+```[]
 maze-code/
 ├── index.html
 ├── style.css
@@ -83,7 +84,7 @@ maze-code/
     ├── tests.js
     ├── debug-controls.js
     └── app.js
-
+```
 
 ## 起動方法
 Visual Studio Code のエクスプローラーから
@@ -130,10 +131,12 @@ L：左回転
 コマンドの入力形式
 次のような入力ができます。
 
+```[]
 FFRFLF
 F F R F L F
 F,R,F,L,F
 F、F、R、F、L、F
+```
 空白やカンマは自動的に削除されます。
 
 
@@ -143,14 +146,14 @@ F、F、R、F、L、F
 各ボタンを押すと、入力欄にプログラムが自動入力されます。
 
 回答例は command-utils.js に定義されています。
-
+```[javascript]
 const EXAMPLES = {
   A: "FFFRFRFLFFRFLFLFFLFFRFFRFFLFLFRF",
   B: "FFLFRFFRFLFFRFRFFLFLFRFFLFLFRF",
   C: "LFFRFFFFFFFRFFFFF",
   D: "RFFFFFLFFFFFFFLFF"
 };
-
+```
 
 ## 各ファイルの役割
 
@@ -172,7 +175,9 @@ player.png	プレイヤー画像
 画面の構造を定義します。
 主な要素は次のとおりです。
 
+```[html]
 <textarea id="commands"></textarea>
+```
 コマンド入力欄です。
 
 <div id="maze"></div>
