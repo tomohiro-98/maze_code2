@@ -76,46 +76,6 @@ class MazeEngine {
     return image;
   }
 
-  // addWallLines(tile, row, col) {
-  //   const wallDefinitions = [
-  //     {
-  //       className: "wall-line-top",
-  //       canCheck: row > 0,
-  //       nextRow: row - 1,
-  //       nextCol: col
-  //     },
-  //     {
-  //       className: "wall-line-right",
-  //       canCheck: col < MAZE_SIZE - 1,
-  //       nextRow: row,
-  //       nextCol: col + 1
-  //     },
-  //     {
-  //       className: "wall-line-bottom",
-  //       canCheck: row < MAZE_SIZE - 1,
-  //       nextRow: row + 1,
-  //       nextCol: col
-  //     },
-  //     {
-  //       className: "wall-line-left",
-  //       canCheck: col > 0,
-  //       nextRow: row,
-  //       nextCol: col - 1
-  //     }
-  //   ];
-
-  //   wallDefinitions.forEach((wall) => {
-  //     if (
-  //       wall.canCheck &&
-  //       hasWallBetween(row, col, wall.nextRow, wall.nextCol)
-  //     ) {
-  //       const wallElement = document.createElement("span");
-  //       wallElement.className = `wall-line ${wall.className}`;
-  //       tile.appendChild(wallElement);
-  //     }
-  //   });
-  // }
-
   addWallLines(tile, row, col) {
   /*
    * 壁線は中央6×6迷路のセルからだけ描画する。
