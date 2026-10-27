@@ -12,7 +12,6 @@ const DIRECTIONS = [
 ];
 
 const START = {row: 2, col: 0, direction: 1};
-
 const GOAL = {row: 5, col: 7};
 
 function createPositionKey(row, col) {
@@ -131,87 +130,31 @@ HORIZONTAL_WALLS.forEach(([upperCell, lowerCell]) => {
  *   (5, 6) と (5, 7) の間は通行可能
  */
 
-// function hasOuterMazeWall(row, col, nextRow, nextCol) {
-//   // 外周側から中央側へ調べる場合は、判定方向を反転する
-//   if (
-//     !isCenterCell(row, col) &&
-//     isCenterCell(nextRow, nextCol)
-//   ) {
-//     return hasOuterMazeWall(nextRow, nextCol, row, col);
-//   }
-
-//   // 上側の壁
-//   if (row === 1 && nextRow === 0) {
-//     return col >= 1 && col <= 6;
-//   }
-
-//   // 下側の壁
-//   if (row === 6 && nextRow === 7) {
-//     return col >= 1 && col <= 6;
-//   }
-
-//   // 左側の壁。row=2だけ入口
-//   if (col === 1 && nextCol === 0) {
-//     return row !== START.row;
-//   }
-
-//   // 右側の壁。row=5だけ出口
-//   if (col === 6 && nextCol === 7) {
-//     return row !== GOAL.row;
-//   }
-
-//   return false;
-// }
-
 function hasOuterMazeWall(row, col, nextRow, nextCol) {
-  // 外周側から中央側へ調べる場合は、
-  // 中央側を現在位置として判定する。
-  if (
-    !isCenterCell(row, col) &&
-    isCenterCell(nextRow, nextCol)
-  ) {
+  // 外周側から中央側へ調べる場合は、中央側を現在位置として判定する。
+  if (!isCenterCell(row, col) && isCenterCell(nextRow, nextCol)) {
     return hasOuterMazeWall(nextRow, nextCol, row, col);
   }
 
   // 上側の外壁
-  if (
-    row === 1 &&
-    nextRow === 0 &&
-    col >= 1 &&
-    col <= 6
-  ) {
+  if (row === 1 && nextRow === 0 && col >= 1 && col <= 6) {
     return true;
   }
 
   // 下側の外壁
-  if (
-    row === 6 &&
-    nextRow === 7 &&
-    col >= 1 &&
-    col <= 6
-  ) {
+  if (row === 6 && nextRow === 7 && col >= 1 && col <= 6) {
     return true;
   }
 
   // 左側の外壁
   // row=2は入口なので壁を作らない
-  if (
-    col === 1 &&
-    nextCol === 0 &&
-    row >= 1 &&
-    row <= 6
-  ) {
+  if (col === 1 && nextCol === 0 && row >= 1 && row <= 6) {
     return row !== START.row;
   }
 
   // 右側の外壁
   // row=5は出口なので壁を作らない
-  if (
-    col === 6 &&
-    nextCol === 7 &&
-    row >= 1 &&
-    row <= 6
-  ) {
+  if (col === 6 && nextCol === 7 && row >= 1 && row <= 6) {
     return row !== GOAL.row;
   }
 
@@ -230,9 +173,7 @@ function hasWallBetween(row, col, nextRow, nextCol) {
   }
 
   // 中央迷路内部の壁
-  return INTERNAL_WALLS.has(
-    createWallKey(row, col, nextRow, nextCol)
-  );
+  return INTERNAL_WALLS.has(createWallKey(row, col, nextRow, nextCol));
 }
 
 function getTileLabel(row, col) {
