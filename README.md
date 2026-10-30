@@ -380,78 +380,88 @@ http://localhost:8000/index.html?test=true
 ・回答例を変更する
 
 command-utils.jsのEXAMPLESを変更します。
-
+```[javascript]
 const EXAMPLES = {
   A: "FFFRFRFL",
   B: "RFFLFF",
   C: "LFFRFF",
   D: "FFRFFLFF"
 };
+```
+
 変更後は、実際にゴールへ到着できるか確認してください。
 
 ・プレイヤー画像を変更する
+
 maze-engine.jsの画像パスを変更します。
-
+```[javascript]
 image.src = "./img/player.png";
-
+```
 ・ゴール画像を変更する
+```[javascript]
 image.src = "./img/goal.png";
+```
 画像ファイルを同じ場所に置き換えるだけでも変更できます。
 
 ・色を変更する
-style.cssの値を変更します。
 
+style.cssの値を変更します。
+```[css]
 :root {
   --accent-color: #1976d2;
   --wall-color: #222222;
   --background-color: #f5f7fa;
 }
+```
 例えばアクセントカラーを緑にする場合：
-
+```[css]
 :root {
   --accent-color: #2e7d32;
 }
-
+```
 ・迷路を変更する
-迷路サイズを変更する場合は、以下の複数箇所を見直す必要があります。
 
+迷路サイズを変更する場合は、以下の複数箇所を見直す必要があります。
+```[javascript]
 const MAZE_SIZE = 8;
 --maze-size: calc(var(--cell-size) * 8);
 grid-template-columns: repeat(8, var(--cell-size));
 grid-template-rows: repeat(8, var(--cell-size));
+```
 現在の壁データは8×8の迷路を前提にしているため、数値だけを変更すると動作しない場合があります。
 
 ・壁の追加、削除
+
 迷路の壁は、中央6×6マスのセル番号を指定して設定します。
 
-セル番号
+セル番号<br> 
 中央迷路のセル番号は、左上を1番として左から右、上から下の順に採番されます。
-
+```[]
  1   2   3   4   5   6
  7   8   9  10  11  12
 13  14  15  16  17  18
 19  20  21  22  23  24
 25  26  27  28  29  30
 31  32  33  34  35  36
-
-左右方向の壁
+```
+左右方向の壁<br> 
 左右に隣接するセルの間に壁を設定する場合は、VERTICAL_WALLS にセル番号のペアを追加します。
 
-壁を削除する場合
+壁を削除する場合<br> 
 既存のセル番号ペアを VERTICAL_WALLS から削除します。
 
-上下方向の壁
+上下方向の壁<br> 
 上下に隣接するセルの間に壁を設定する場合は、HORIZONTAL_WALLS にセル番号のペアを追加します。
 
-壁を削除する場合
+壁を削除する場合<br> 
 既存のセル番号ペアを HORIZONTAL_WALLS から削除します。
 
-壁を追加・削除するときの注意
-指定できるセル番号は 1～36 です。
-壁を設定するセルは、左右または上下に隣接している必要があります。
+壁を追加・削除するときの注意<br> 
+指定できるセル番号は 1～36 です。<br> 
+壁を設定するセルは、左右または上下に隣接している必要があります。<br> 
 VERTICAL_WALLS と HORIZONTAL_WALLS の変更内容は、迷路生成時に INTERNAL_WALLS へ反映されます。
 
 ## 注意事項
 
-画像の利用について
+画像の利用について<br> 
 player.pngやgoal.pngを差し替える場合は、画像の著作権や利用許諾を確認してください。
