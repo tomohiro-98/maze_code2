@@ -10,9 +10,7 @@ const EXAMPLES = {
 const VALID_COMMANDS = new Set(["F", "R", "L"]);
 
 function normalizeCommandText(text) {
-  return text
-    .toUpperCase()
-    .replace(/[\s,、，]/g, "");
+  return text.toUpperCase().replace(/[\s,、，]/g, "");
 }
 
 function parseCommands(text) {
@@ -22,15 +20,10 @@ function parseCommands(text) {
     throw new Error("指示を1つ以上入力してください。");
   }
 
-  const invalidCommand = [...normalized].find(
-    (command) => !VALID_COMMANDS.has(command)
-  );
+  const invalidCommand = [...normalized].find((command) => !VALID_COMMANDS.has(command));
 
   if (invalidCommand) {
-    throw new Error(
-      `使用できない指示「${invalidCommand}」があります。` +
-      "F・R・Lのみ使用できます。"
-    );
+    throw new Error(`使用できない指示「${invalidCommand}」があります。F・R・Lのみ使用できます。` );
   }
 
   return [...normalized];
@@ -90,10 +83,7 @@ function routeToCommands(points, initialDirection = START.direction) {
 
 function cellRouteToCommands(cellNumbers) {
   const points = [
-    {
-      row: START.row,
-      col: START.col
-    },
+    {row: START.row, col: START.col},
     ...cellNumbers.map(cellNumberToPosition)
   ];
 
